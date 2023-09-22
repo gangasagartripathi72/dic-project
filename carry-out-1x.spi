@@ -1,0 +1,32 @@
+*** SPICE deck for cell carry-out-1x{lay} from library carry-out-1x
+*** Created on Fri Sep 22, 2023 23:04:39
+*** Last revised on Fri Sep 22, 2023 23:10:37
+*** Written on Fri Sep 22, 2023 23:11:55 by Electric VLSI Design System, version 9.07
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+*** TOP LEVEL CELL: carry-out-1x{lay}
+Mnmos@0 gnd B net@47 gnd nmos L=0.022U W=0.088U AS=0.004P AD=0.004P PS=0.202U PD=0.202U
+Mnmos@1 net@47 A gnd gnd nmos L=0.022U W=0.088U AS=0.004P AD=0.004P PS=0.202U PD=0.202U
+Mnmos@2 gnd B net@16 gnd nmos L=0.022U W=0.088U AS=0.002P AD=0.004P PS=0.149U PD=0.202U
+Mnmos@3 net@16 A Y gnd nmos L=0.022U W=0.088U AS=0.004P AD=0.002P PS=0.198U PD=0.149U
+Mnmos@4 Y C net@47 gnd nmos L=0.022U W=0.088U AS=0.004P AD=0.004P PS=0.202U PD=0.198U
+Mpmos@0 vdd B net@0 vdd pmos L=0.022U W=0.176U AS=0.007P AD=0.007P PS=0.319U PD=0.319U
+Mpmos@1 net@0 A vdd vdd pmos L=0.022U W=0.176U AS=0.007P AD=0.007P PS=0.319U PD=0.319U
+Mpmos@2 vdd B net@15 vdd pmos L=0.022U W=0.176U AS=0.003P AD=0.007P PS=0.209U PD=0.319U
+Mpmos@3 net@15 A Y vdd pmos L=0.022U W=0.176U AS=0.004P AD=0.003P PS=0.198U PD=0.209U
+Mpmos@4 Y C net@0 vdd pmos L=0.022U W=0.176U AS=0.007P AD=0.004P PS=0.319U PD=0.198U
+
+* Spice Code nodes in cell cell 'carry-out-1x{lay}'
+.include "C:\Users\ganga\OneDrive\Desktop\DIC\22nm_HP.pm"
+.param vdd = 0.8
+v1 vdd gnd DC {vdd}
+v2 A gnd PULSE(0 {vdd} 0 50p 50p 900p 2n)
+v3 B gnd PULSE(0 {vdd} 0 50p 50p 400p 1n)
+v4 C gnd PULSE(0 {vdd} 0 50p 50p 150p 0.5n)
+.meas tran delay_a_to_y
++trig v(a) val = (vdd/2) cross = 2
++targ v(y) val = (vdd/2) cross = 2
+.tran 0 2n
+.END
+.END
