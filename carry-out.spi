@@ -1,0 +1,34 @@
+*** SPICE deck for cell carry-out{sch} from library carry-out
+*** Created on Wed Sep 20, 2023 14:33:08
+*** Last revised on Wed Sep 20, 2023 15:28:50
+*** Written on Wed Sep 20, 2023 15:28:54 by Electric VLSI Design System, version 9.07
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+.global gnd vdd
+
+*** TOP LEVEL CELL: carry-out:carry-out{sch}
+Mnmos@0 Y C net@13 gnd nmos L=0.022U W=0.066U
+Mnmos@1 net@13 A gnd gnd nmos L=0.022U W=0.066U
+Mnmos@2 net@13 B gnd gnd nmos L=0.022U W=0.066U
+Mnmos@3 Y A net@21 gnd nmos L=0.022U W=0.022U
+Mnmos@4 net@21 B gnd gnd nmos L=0.022U W=0.022U
+Mpmos@0 net@6 C Y vdd pmos L=0.022U W=0.132U
+Mpmos@1 vdd A net@6 vdd pmos L=0.022U W=0.132U
+Mpmos@2 vdd B net@6 vdd pmos L=0.022U W=0.132U
+Mpmos@3 net@19 A Y vdd pmos L=0.022U W=0.044U
+Mpmos@4 vdd B net@19 vdd pmos L=0.022U W=0.044U
+
+* Spice Code nodes in cell cell 'carry-out:carry-out{sch}'
+.include "C:\Users\ganga\OneDrive\Desktop\DIC\22nm_HP.pm"
+.param vdd = 0.8
+v1 vdd gnd DC {vdd}
+v2 A gnd PULSE(0 {vdd} 400p 100p 100p 900p 2n)
+v3 B gnd PULSE(0 {vdd} 900p 100p 100p 900p 2n)
+v4 C gnd PULSE(0 {vdd} 900p 100p 100p 900p 2n)
+.meas tran delay_a_to_y
++trig v(a) val = (vdd/2) cross = 2
++targ v(y) val = (vdd/2) cross = 2
+.tran 0 2n
+.END
+.END
