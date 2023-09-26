@@ -1,0 +1,24 @@
+Circuit: *** SPICE deck for cell carry-out-2x{lay} from library carry-out-2x
+
+Direct Newton iteration for .op point succeeded.
+
+delay_a_to_y=-3.30187e-010 FROM 9.5e-010 TO 6.19813e-010
+
+
+Date: Wed Sep 27 02:00:53 2023
+Total elapsed time: 0.293 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2284
+traniter = 2276
+tranpoints = 1098
+accept = 1088
+rejected = 10
+matrix size = 77
+fillins = 0
+solver = Normal
+Matrix Compiler1: 8.93 KB object code size  3.5/1.8/[1.7]
+Matrix Compiler2: off  [1.2]/1.7/1.6
+
