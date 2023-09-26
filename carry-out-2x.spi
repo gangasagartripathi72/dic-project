@@ -1,0 +1,38 @@
+*** SPICE deck for cell carry-out-2x{lay} from library carry-out-2x
+*** Created on Tue Sep 26, 2023 23:08:07
+*** Last revised on Wed Sep 27, 2023 02:00:48
+*** Written on Wed Sep 27, 2023 02:00:52 by Electric VLSI Design System, version 9.07
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+
+*** TOP LEVEL CELL: carry-out-2x{lay}
+Mnmos@0 net@52 A gnd gnd nmos L=0.022U W=0.088U AS=0.003P AD=0.003P PS=0.183U PD=0.154U
+Mnmos@1 gnd A net@52 gnd nmos L=0.022U W=0.088U AS=0.003P AD=0.003P PS=0.154U PD=0.183U
+Mnmos@2 net@52 B gnd gnd nmos L=0.022U W=0.088U AS=0.003P AD=0.003P PS=0.183U PD=0.154U
+Mnmos@3 gnd B net@52 gnd nmos L=0.022U W=0.088U AS=0.003P AD=0.003P PS=0.154U PD=0.183U
+Mnmos@4 net@60 B gnd gnd nmos L=0.022U W=0.088U AS=0.003P AD=0.002P PS=0.183U PD=0.149U
+Mnmos@5 net@52 C Y gnd nmos L=0.022U W=0.088U AS=0.006P AD=0.003P PS=0.26U PD=0.154U
+Mnmos@6 Y A net@60 gnd nmos L=0.022U W=0.088U AS=0.002P AD=0.006P PS=0.149U PD=0.26U
+Mnmos@7 Y C net@52 gnd nmos L=0.022U W=0.088U AS=0.003P AD=0.006P PS=0.154U PD=0.26U
+Mpmos@0 net@1 B vdd vdd pmos L=0.022U W=0.176U AS=0.007P AD=0.006P PS=0.288U PD=0.242U
+Mpmos@1 vdd B net@1 vdd pmos L=0.022U W=0.176U AS=0.006P AD=0.007P PS=0.242U PD=0.288U
+Mpmos@2 net@1 C Y vdd pmos L=0.022U W=0.176U AS=0.006P AD=0.006P PS=0.26U PD=0.242U
+Mpmos@3 Y C net@1 vdd pmos L=0.022U W=0.176U AS=0.006P AD=0.006P PS=0.242U PD=0.26U
+Mpmos@6 net@48 B vdd vdd pmos L=0.022U W=0.176U AS=0.007P AD=0.003P PS=0.288U PD=0.237U
+Mpmos@7 Y A net@48 vdd pmos L=0.022U W=0.176U AS=0.003P AD=0.006P PS=0.237U PD=0.26U
+Mpmos@8 net@1 A vdd vdd pmos L=0.022U W=0.176U AS=0.007P AD=0.006P PS=0.288U PD=0.242U
+Mpmos@9 vdd A net@1 vdd pmos L=0.022U W=0.176U AS=0.006P AD=0.007P PS=0.242U PD=0.288U
+
+* Spice Code nodes in cell cell 'carry-out-2x{lay}'
+.include "C:\Users\ganga\OneDrive\Desktop\DIC\22nm_HP.pm"
+.param vdd = 0.8
+v1 vdd gnd DC {vdd}
+v2 A gnd PULSE(0 {vdd} 100p 100p 100p 700p 2n)
+v3 B gnd PULSE(0 {vdd} 100p 100p 100p 350p 1n)
+v4 C gnd PULSE(0 {vdd} 100p 100p 100p 175p 1n)
+.meas tran delay_a_to_y
++trig v(a) val = (vdd/2) cross = 2
++targ v(y) val = (vdd/2) cross = 2
+.tran 0 2n
+.END
+.END
